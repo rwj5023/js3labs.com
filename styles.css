@@ -422,6 +422,16 @@ a {
   background: linear-gradient(180deg, #ffffff, #f8fafc);
 }
 
+.shot-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: #eef2f8;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
 .launcher-shot,
 .diagnostics-shot {
   display: grid;

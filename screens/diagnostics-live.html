@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Actu AI Diagnostics Screen</title>
+    <style>
+      :root {
+        --bg: #eef2f8;
+        --panel: #ffffff;
+        --ink: #0f172a;
+        --muted: #64748b;
+        --line: #dbe3ef;
+        --primary: #4f46e5;
+        --primary-soft: #e0e7ff;
+        --ok: #0f766e;
+        --ok-soft: #d1fae5;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Inter, system-ui, sans-serif;
+        background:
+          radial-gradient(circle at top right, rgba(79, 70, 229, 0.08), transparent 30%),
+          linear-gradient(180deg, #f7f9fc 0%, var(--bg) 100%);
+        color: var(--ink);
+      }
+      .frame { width: 1520px; min-height: 1020px; margin: 0 auto; padding: 28px; }
+      .app-shell {
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 28px;
+        overflow: hidden;
+        background: rgba(255,255,255,0.72);
+        box-shadow: 0 24px 80px rgba(15, 23, 42, 0.12);
+        backdrop-filter: blur(14px);
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 28px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(248, 250, 252, 0.88);
+      }
+      .brand { font-weight: 700; font-size: 18px; letter-spacing: 0.01em; }
+      .brand small { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; font-weight: 500; }
+      .header-note { font-size: 13px; color: var(--muted); padding: 10px 16px; border-radius: 999px; background: #fff; border: 1px solid var(--line); }
+      .content { padding: 24px 28px 30px; }
+      h1 { margin: 0; font-size: 34px; line-height: 1.1; }
+      .sub { margin-top: 8px; color: var(--muted); font-size: 14px; }
+      code { background: #edf2f7; border-radius: 8px; padding: 3px 8px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+      .phase-row { display: flex; align-items: center; gap: 10px; margin: 18px 0; }
+      .phase { padding: 9px 16px; border-radius: 999px; font-size: 13px; border: 1px solid var(--line); color: var(--muted); background: #fff; }
+      .phase.active { background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%); color: #fff; border-color: transparent; font-weight: 700; }
+      .arrow { color: #cbd5e1; }
+      .stat-strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 14px 16px; }
+      .stat span { display: block; color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+      .stat strong { font-size: 22px; }
+      .vars { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+      .var-pill { padding: 9px 12px; border-radius: 999px; background: #fff; color: var(--muted); border: 1px solid var(--line); font-size: 12px; }
+      .var-pill.active { background: var(--primary); color: #fff; border-color: transparent; font-weight: 700; }
+      .grid {
+        display: grid;
+        grid-template-columns: 1.7fr 1fr;
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 16px;
+      }
+      .panel h2 { margin: 0 0 10px; font-size: 17px; }
+      .panel-copy { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
+      .chart-svg { width: 100%; display: block; background: linear-gradient(180deg, #fff 0%, #fafbff 100%); border-radius: 14px; }
+      .rel-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+      .rel-table th, .rel-table td { padding: 10px 0; border-bottom: 1px solid #f1f5f9; text-align: right; }
+      .rel-table th:first-child, .rel-table td:first-child { text-align: left; }
+      .note {
+        margin-top: 12px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: var(--ok-soft);
+        color: var(--ok);
+        font-size: 13px;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <div class="app-shell">
+        <div class="topbar">
+          <div class="brand">Actu AI Real Analytics Platform<small>Justice Specialty Software Services</small></div>
+          <div class="header-note">Live diagnostics from example model output</div>
+        </div>
+        <div class="content">
+          <h1>Diagnostics</h1>
+          <div class="sub">Model: <code>919470eb-1871-4649-82fd-cdded3d9cdd5</code></div>
+
+          <div class="phase-row">
+            <div class="phase active">Train</div>
+            <div class="arrow">→</div>
+            <div class="phase">Test</div>
+            <div class="arrow">→</div>
+            <div class="phase">Holdout</div>
+          </div>
+
+          <div class="stat-strip">
+            <div class="stat"><span>Train deviance</span><strong>90.6</strong></div>
+            <div class="stat"><span>Test deviance</span><strong>26.8</strong></div>
+            <div class="stat"><span>Train Gini</span><strong>0.0000</strong></div>
+            <div class="stat"><span>Feature count</span><strong>8</strong></div>
+          </div>
+
+          <div class="vars"><div class="var-pill">driver_age</div><div class="var-pill active">territory</div><div class="var-pill">coverage</div><div class="var-pill">gender</div><div class="var-pill">credit_score</div><div class="var-pill">vehicle_age</div></div>
+
+          <div class="grid">
+            <section class="panel">
+              <h2>One-way diagnostics</h2>
+              <div class="panel-copy">Exposure bars plus observed and predicted frequency by level for <strong>territory</strong>.</div>
+              <svg viewBox="0 0 700 280" class="chart-svg" role="img" aria-label="chart"><line x1="56" y1="18.0" x2="664" y2="18.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="86.0" x2="664" y2="86.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="154.0" x2="664" y2="154.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="222.0" x2="664" y2="222.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="222" x2="664" y2="222" stroke="#cbd5e1" stroke-width="1.2" /><rect x="104.6" y="18.0" width="105.4" height="204.0" rx="7" fill="#c7d2fe" /><rect x="307.3" y="41.4" width="105.4" height="180.6" rx="7" fill="#c7d2fe" /><rect x="510.0" y="130.7" width="105.4" height="91.3" rx="7" fill="#c7d2fe" /><polyline fill="none" stroke="#4f46e5" stroke-width="3" points="157.3,25.2 360.0,117.4 562.7,144.4" /><polyline fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="6 4" points="157.3,18.0 360.0,61.0 562.7,91.7" /><circle cx="157.3" cy="25.2" r="3.5" fill="#4f46e5" /><circle cx="360.0" cy="117.4" r="3.5" fill="#4f46e5" /><circle cx="562.7" cy="144.4" r="3.5" fill="#4f46e5" /><circle cx="157.3" cy="18.0" r="3.5" fill="#f59e0b" /><circle cx="360.0" cy="61.0" r="3.5" fill="#f59e0b" /><circle cx="562.7" cy="91.7" r="3.5" fill="#f59e0b" /><text x="157.3" y="244.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 157.3 244.0)">Urban</text><text x="360.0" y="244.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 360.0 244.0)">Suburban</text><text x="562.7" y="244.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 562.7 244.0)">Rural</text></svg>
+            </section>
+            <section class="panel">
+              <h2>Relativities — territory</h2>
+              <div class="panel-copy">Balanced relativities from the trained model so reviewers can see which levels are materially different.</div>
+              <table class="rel-table">
+                <thead><tr><th>Level</th><th>Coef</th><th>Model Rel</th></tr></thead>
+                <tbody><tr><td>Other</td><td>-0.5381</td><td>0.7190</td></tr><tr><td>Suburban</td><td>-0.3354</td><td>0.8806</td></tr></tbody>
+              </table>
+              <div class="note">Model structure is ready for reviewer sign-off before moving into the test phase.</div>
+            </section>
+          </div>
+
+          <section class="panel">
+            <h2>Lift chart</h2>
+            <div class="panel-copy">Observed versus predicted claim frequency by ranked decile, with exposure in the background. This is the evidence reviewers use before accepting test validation.</div>
+            <svg viewBox="0 0 1060 270" class="chart-svg" role="img" aria-label="chart"><line x1="56" y1="18.0" x2="1024" y2="18.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="82.7" x2="1024" y2="82.7" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="147.3" x2="1024" y2="147.3" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="212.0" x2="1024" y2="212.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="212" x2="1024" y2="212" stroke="#cbd5e1" stroke-width="1.2" /><rect x="79.2" y="18.2" width="50.3" height="193.8" rx="7" fill="#c7d2fe" /><rect x="176.0" y="27.7" width="50.3" height="184.3" rx="7" fill="#c7d2fe" /><rect x="272.8" y="18.0" width="50.3" height="194.0" rx="7" fill="#c7d2fe" /><rect x="369.6" y="27.7" width="50.3" height="184.3" rx="7" fill="#c7d2fe" /><rect x="466.4" y="24.8" width="50.3" height="187.2" rx="7" fill="#c7d2fe" /><rect x="563.2" y="23.9" width="50.3" height="188.1" rx="7" fill="#c7d2fe" /><rect x="660.0" y="20.1" width="50.3" height="191.9" rx="7" fill="#c7d2fe" /><rect x="756.8" y="24.9" width="50.3" height="187.1" rx="7" fill="#c7d2fe" /><rect x="853.6" y="23.0" width="50.3" height="189.0" rx="7" fill="#c7d2fe" /><rect x="950.4" y="25.8" width="50.3" height="186.2" rx="7" fill="#c7d2fe" /><polyline fill="none" stroke="#4f46e5" stroke-width="3" points="104.4,164.9 201.2,212.0 298.0,117.8 394.8,162.4 491.6,138.8 588.4,187.7 685.2,140.6 782.0,138.8 878.8,42.8 975.6,138.4" /><polyline fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="6 4" points="104.4,188.1 201.2,179.5 298.0,173.2 394.8,167.5 491.6,161.6 588.4,155.3 685.2,147.2 782.0,135.1 878.8,114.2 975.6,18.0" /><circle cx="104.4" cy="164.9" r="3.5" fill="#4f46e5" /><circle cx="201.2" cy="212.0" r="3.5" fill="#4f46e5" /><circle cx="298.0" cy="117.8" r="3.5" fill="#4f46e5" /><circle cx="394.8" cy="162.4" r="3.5" fill="#4f46e5" /><circle cx="491.6" cy="138.8" r="3.5" fill="#4f46e5" /><circle cx="588.4" cy="187.7" r="3.5" fill="#4f46e5" /><circle cx="685.2" cy="140.6" r="3.5" fill="#4f46e5" /><circle cx="782.0" cy="138.8" r="3.5" fill="#4f46e5" /><circle cx="878.8" cy="42.8" r="3.5" fill="#4f46e5" /><circle cx="975.6" cy="138.4" r="3.5" fill="#4f46e5" /><circle cx="104.4" cy="188.1" r="3.5" fill="#f59e0b" /><circle cx="201.2" cy="179.5" r="3.5" fill="#f59e0b" /><circle cx="298.0" cy="173.2" r="3.5" fill="#f59e0b" /><circle cx="394.8" cy="167.5" r="3.5" fill="#f59e0b" /><circle cx="491.6" cy="161.6" r="3.5" fill="#f59e0b" /><circle cx="588.4" cy="155.3" r="3.5" fill="#f59e0b" /><circle cx="685.2" cy="147.2" r="3.5" fill="#f59e0b" /><circle cx="782.0" cy="135.1" r="3.5" fill="#f59e0b" /><circle cx="878.8" cy="114.2" r="3.5" fill="#f59e0b" /><circle cx="975.6" cy="18.0" r="3.5" fill="#f59e0b" /><text x="104.4" y="234.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 104.4 234.0)">D1</text><text x="201.2" y="234.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 201.2 234.0)">D2</text><text x="298.0" y="234.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 298.0 234.0)">D3</text><text x="394.8" y="234.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 394.8 234.0)">D4</text><text x="491.6" y="234.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 491.6 234.0)">D5</text><text x="588.4" y="234.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 588.4 234.0)">D6</text><text x="685.2" y="234.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 685.2 234.0)">D7</text><text x="782.0" y="234.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 782.0 234.0)">D8</text><text x="878.8" y="234.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 878.8 234.0)">D9</text><text x="975.6" y="234.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 975.6 234.0)">D10</text></svg>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
