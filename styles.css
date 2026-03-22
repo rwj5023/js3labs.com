@@ -179,6 +179,34 @@ a {
   margin-top: 28px;
 }
 
+.idea-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.flow-chip,
+.flow-arrow {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.flow-chip {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.flow-arrow {
+  color: var(--accent);
+}
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -392,6 +420,16 @@ a {
 .shot-body {
   padding: 20px;
   background: linear-gradient(180deg, #ffffff, #f8fafc);
+}
+
+.shot-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: #eef2f8;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
 }
 
 .launcher-shot,

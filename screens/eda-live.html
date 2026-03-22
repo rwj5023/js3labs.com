@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Actu AI EDA Screen</title>
+    <style>
+      :root {
+        --bg: #eef2f8;
+        --panel: #ffffff;
+        --ink: #0f172a;
+        --muted: #64748b;
+        --line: #dbe3ef;
+        --primary: #4f46e5;
+        --primary-soft: #e0e7ff;
+        --accent: #f59e0b;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Inter, system-ui, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(79, 70, 229, 0.08), transparent 28%),
+          linear-gradient(180deg, #f7f9fc 0%, var(--bg) 100%);
+        color: var(--ink);
+      }
+      .frame {
+        width: 1520px;
+        min-height: 980px;
+        margin: 0 auto;
+        padding: 28px;
+      }
+      .app-shell {
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 28px;
+        overflow: hidden;
+        background: rgba(255,255,255,0.72);
+        box-shadow: 0 24px 80px rgba(15, 23, 42, 0.12);
+        backdrop-filter: blur(14px);
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 28px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(248, 250, 252, 0.88);
+      }
+      .brand { font-weight: 700; font-size: 18px; letter-spacing: 0.01em; }
+      .brand small { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; font-weight: 500; }
+      .header-note {
+        font-size: 13px; color: var(--muted); padding: 10px 16px; border-radius: 999px; background: #fff; border: 1px solid var(--line);
+      }
+      .workflow {
+        display: flex;
+        gap: 10px;
+        padding: 20px 28px 0;
+        flex-wrap: wrap;
+      }
+      .step {
+        padding: 10px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        color: var(--muted);
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+      .step.active {
+        color: #fff;
+        background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
+        border-color: transparent;
+      }
+      .content { padding: 24px 28px 30px; }
+      .page-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 18px;
+      }
+      h1 { margin: 0; font-size: 34px; line-height: 1.1; }
+      .sub { margin-top: 8px; color: var(--muted); font-size: 14px; }
+      code {
+        background: #edf2f7;
+        border-radius: 8px;
+        padding: 3px 8px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+      }
+      .summary-strip {
+        min-width: 320px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .stat {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 14px 16px;
+      }
+      .stat span { display: block; color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+      .stat strong { font-size: 22px; }
+      .tabs {
+        display: flex;
+        gap: 8px;
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 18px;
+      }
+      .tab {
+        padding: 12px 16px;
+        color: var(--muted);
+        font-size: 14px;
+        border-bottom: 2px solid transparent;
+      }
+      .tab.active {
+        color: var(--primary);
+        border-bottom-color: var(--primary);
+        font-weight: 700;
+      }
+      .helper {
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .chart-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      .viz-card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 16px 16px 8px;
+      }
+      .viz-card-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .viz-title { font-weight: 700; font-size: 15px; }
+      .viz-badge {
+        font-size: 11px;
+        color: var(--primary);
+        background: var(--primary-soft);
+        border-radius: 999px;
+        padding: 5px 9px;
+        text-transform: lowercase;
+      }
+      .chart-svg {
+        width: 100%;
+        display: block;
+        background: linear-gradient(180deg, #fff 0%, #fafbff 100%);
+        border-radius: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <div class="app-shell">
+        <div class="topbar">
+          <div class="brand">Actu AI Real Analytics Platform<small>Justice Specialty Software Services</small></div>
+          <div class="header-note">Live screen from example actuarial data</div>
+        </div>
+        <div class="workflow">
+          <div class="step">Upload</div>
+          <div class="step">Configure</div>
+          <div class="step active">Explore</div>
+          <div class="step">Screen</div>
+          <div class="step">Tune</div>
+          <div class="step">Train</div>
+          <div class="step">Diagnostics</div>
+          <div class="step">Export</div>
+        </div>
+        <div class="content">
+          <div class="page-head">
+            <div>
+              <h1>Exploratory Data Analysis</h1>
+              <div class="sub">6 predictors · raw data, no model applied · <code>2a6d9b1c-83b2-4450-9552-592b9b749e54</code></div>
+            </div>
+            <div class="summary-strip">
+              <div class="stat"><span>One-way charts</span><strong>6</strong></div>
+              <div class="stat"><span>Summary rows</span><strong>8</strong></div>
+              <div class="stat"><span>Correlations</span><strong>2</strong></div>
+            </div>
+          </div>
+          <div class="tabs">
+            <div class="tab active">One-Way Charts (6)</div>
+            <div class="tab">Variable Summary (8)</div>
+            <div class="tab">Correlations (2)</div>
+          </div>
+          <p class="helper">Bars show exposure volume by band. The line shows the observed claim frequency the model will learn from this example dataset.</p>
+          <div class="chart-grid">
+            
+            <section class="viz-card">
+              <div class="viz-card-head">
+                <div class="viz-title">driver_age</div>
+                <span class="viz-badge">categorical</span>
+              </div>
+              <svg viewBox="0 0 540 250" class="chart-svg" role="img" aria-label="chart"><line x1="56" y1="18.0" x2="504" y2="18.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="76.0" x2="504" y2="76.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="134.0" x2="504" y2="134.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="192.0" x2="504" y2="192.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="192" x2="504" y2="192" stroke="#cbd5e1" stroke-width="1.2" /><rect x="73.9" y="18.0" width="38.8" height="174.0" rx="7" fill="#c7d2fe" /><rect x="148.6" y="33.3" width="38.8" height="158.7" rx="7" fill="#c7d2fe" /><rect x="223.3" y="43.5" width="38.8" height="148.5" rx="7" fill="#c7d2fe" /><rect x="297.9" y="60.9" width="38.8" height="131.1" rx="7" fill="#c7d2fe" /><rect x="372.6" y="60.9" width="38.8" height="131.1" rx="7" fill="#c7d2fe" /><rect x="447.3" y="101.6" width="38.8" height="90.4" rx="7" fill="#c7d2fe" /><polyline fill="none" stroke="#4f46e5" stroke-width="3" points="93.3,141.0 168.0,112.1 242.7,157.9 317.3,163.0 392.0,18.0 466.7,121.9" /><circle cx="93.3" cy="141.0" r="3.5" fill="#4f46e5" /><circle cx="168.0" cy="112.1" r="3.5" fill="#4f46e5" /><circle cx="242.7" cy="157.9" r="3.5" fill="#4f46e5" /><circle cx="317.3" cy="163.0" r="3.5" fill="#4f46e5" /><circle cx="392.0" cy="18.0" r="3.5" fill="#4f46e5" /><circle cx="466.7" cy="121.9" r="3.5" fill="#4f46e5" /><text x="93.3" y="214.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 93.3 214.0)">36-45</text><text x="168.0" y="214.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 168.0 214.0)">26-35</text><text x="242.7" y="214.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 242.7 214.0)">46-55</text><text x="317.3" y="214.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 317.3 214.0)">56-65</text><text x="392.0" y="214.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 392.0 214.0)">16-25</text><text x="466.7" y="214.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 466.7 214.0)">65+</text></svg>
+            </section>
+            
+            <section class="viz-card">
+              <div class="viz-card-head">
+                <div class="viz-title">territory</div>
+                <span class="viz-badge">categorical</span>
+              </div>
+              <svg viewBox="0 0 540 250" class="chart-svg" role="img" aria-label="chart"><line x1="56" y1="18.0" x2="504" y2="18.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="76.0" x2="504" y2="76.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="134.0" x2="504" y2="134.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="192.0" x2="504" y2="192.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="192" x2="504" y2="192" stroke="#cbd5e1" stroke-width="1.2" /><rect x="91.8" y="18.0" width="77.7" height="174.0" rx="7" fill="#c7d2fe" /><rect x="241.2" y="42.7" width="77.7" height="149.3" rx="7" fill="#c7d2fe" /><rect x="390.5" y="119.7" width="77.7" height="72.3" rx="7" fill="#c7d2fe" /><polyline fill="none" stroke="#4f46e5" stroke-width="3" points="130.7,18.0 280.0,97.4 429.3,150.1" /><circle cx="130.7" cy="18.0" r="3.5" fill="#4f46e5" /><circle cx="280.0" cy="97.4" r="3.5" fill="#4f46e5" /><circle cx="429.3" cy="150.1" r="3.5" fill="#4f46e5" /><text x="130.7" y="214.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 130.7 214.0)">Urban</text><text x="280.0" y="214.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 280.0 214.0)">Suburban</text><text x="429.3" y="214.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 429.3 214.0)">Rural</text></svg>
+            </section>
+            
+            <section class="viz-card">
+              <div class="viz-card-head">
+                <div class="viz-title">coverage</div>
+                <span class="viz-badge">categorical</span>
+              </div>
+              <svg viewBox="0 0 540 250" class="chart-svg" role="img" aria-label="chart"><line x1="56" y1="18.0" x2="504" y2="18.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="76.0" x2="504" y2="76.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="134.0" x2="504" y2="134.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="192.0" x2="504" y2="192.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="192" x2="504" y2="192" stroke="#cbd5e1" stroke-width="1.2" /><rect x="91.8" y="18.0" width="77.7" height="174.0" rx="7" fill="#c7d2fe" /><rect x="241.2" y="99.2" width="77.7" height="92.8" rx="7" fill="#c7d2fe" /><rect x="390.5" y="103.8" width="77.7" height="88.2" rx="7" fill="#c7d2fe" /><polyline fill="none" stroke="#4f46e5" stroke-width="3" points="130.7,68.3 280.0,18.0 429.3,45.6" /><circle cx="130.7" cy="68.3" r="3.5" fill="#4f46e5" /><circle cx="280.0" cy="18.0" r="3.5" fill="#4f46e5" /><circle cx="429.3" cy="45.6" r="3.5" fill="#4f46e5" /><text x="130.7" y="214.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 130.7 214.0)">Liability</text><text x="280.0" y="214.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 280.0 214.0)">Collision</text><text x="429.3" y="214.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 429.3 214.0)">Comprehensive</text></svg>
+            </section>
+            
+            <section class="viz-card">
+              <div class="viz-card-head">
+                <div class="viz-title">gender</div>
+                <span class="viz-badge">categorical</span>
+              </div>
+              <svg viewBox="0 0 540 250" class="chart-svg" role="img" aria-label="chart"><line x1="56" y1="18.0" x2="504" y2="18.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="76.0" x2="504" y2="76.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="134.0" x2="504" y2="134.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="192.0" x2="504" y2="192.0" stroke="#e5e7eb" stroke-width="1" /><line x1="56" y1="192" x2="504" y2="192" stroke="#cbd5e1" stroke-width="1.2" /><rect x="109.8" y="18.0" width="116.5" height="174.0" rx="7" fill="#c7d2fe" /><rect x="333.8" y="47.5" width="116.5" height="144.5" rx="7" fill="#c7d2fe" /><polyline fill="none" stroke="#4f46e5" stroke-width="3" points="168.0,18.0 392.0,61.9" /><circle cx="168.0" cy="18.0" r="3.5" fill="#4f46e5" /><circle cx="392.0" cy="61.9" r="3.5" fill="#4f46e5" /><text x="168.0" y="214.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 168.0 214.0)">M</text><text x="392.0" y="214.0" text-anchor="end" font-size="10" fill="#6b7280" transform="rotate(-28 392.0 214.0)">F</text></svg>
+            </section>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
